@@ -60,7 +60,7 @@ if(isset($_POST["cuenta"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     $stmt->store_result();
     if($stmt->num_rows == 1){
 
-        $sql = "INSERT INTO movimientos_cuenta (id_cuenta, cantidad) VALUES (?, ?)";
+        $sql = "INSERT INTO movimientos_cuenta (cantidad) VALUES (?, ?)";
         $stmt = $mysqli->prepare($sql);
         $stmt->bind_param("id", $id_cuenta, $_POST["cantidad"]);
         $stmt->execute();
@@ -157,6 +157,8 @@ if(isset($_POST["cuenta"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
         <div class="col-sm-8 col-12">
 
+
+
             <div class="w-100 my-md-3 ps-md-3">
 
                 <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
@@ -170,33 +172,54 @@ if(isset($_POST["cuenta"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <p class="lead"><?php echo $filacuenta["IBAN"] ?></p>
 
+                    <div class="text-dark bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+
+                        <form class="col-8" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                            <div class="form-group">
+                                <label>
+                                    <input type="radio" name="ingreso_gasto" value="transferencia" required> Transferencia
+                                </label>
+                                <label>
+                                    <input type="radio" name="ingreso_gasto" value="ingreso"> Ingreso
+                                </label>
+                            </div>
+
+                            <div class="form-group">
+                                <label>Cuenta</label>
+                                <input type="text" name="cuenta" step="any" class="form-control  <?php echo (!empty($IBAN_err)) ? 'is-invalid' : ''; ?>" >
+                                <span class="invalid-feedback"><?php echo $IBAN_err; ?></span>
+                            </div>
+                            <div class="form-group">
+                                <label>cantidad</label>
+                                <input type="number" name="cantidad" class="form-control  <?php echo (!empty($cantidad_err)) ? 'is-invalid' : ''; echo (!empty($tranferencia_hecha)) ? 'is-valid' : ''; ?>">
+                                <span class="invalid-feedback"><?php echo $cantidad_err; ?></span>
+                                <span class="valid-feedback"><?php echo $tranferencia_hecha; ?></span>
+                            </div>
+                            <div class="form-group">
+                                <input type="submit" class="btn btn-primary" value="Login">
+                            </div>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+
+
+
+
+            <div class="w-100 my-md-3 ps-md-3">
+                <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
+                    <div class="my-3 py-3">
+                        <h2 class="display-5">Another headline</h2>
+                        <p class="lead">And an even wittier subheading.</p>
+                    </div>
                     <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
 
-
-
                     </div>
                 </div>
             </div>
 
-            <div class="w-100 my-md-3 ps-md-3">
-                <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-                    <div class="my-3 py-3">
-                        <h2 class="display-5">Another headline</h2>
-                        <p class="lead">And an even wittier subheading.</p>
-                    </div>
-                    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-                </div>
-            </div>
 
-            <div class="w-100 my-md-3 ps-md-3">
-                <div class="bg-dark me-md-3 pt-3 px-3 pt-md-5 px-md-5 text-center text-white overflow-hidden">
-                    <div class="my-3 py-3">
-                        <h2 class="display-5">Another headline</h2>
-                        <p class="lead">And an even wittier subheading.</p>
-                    </div>
-                    <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;"></div>
-                </div>
-            </div>
 
 
 

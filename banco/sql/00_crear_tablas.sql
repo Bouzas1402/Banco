@@ -12,11 +12,11 @@ CREATE TABLE cliente (
                          contrasena VARCHAR(10)
 );
 
-INSERT INTO cliente VALUES ("3456543D", "Enrique", "quevedo");
-INSERT INTO cliente VALUES ("9876443S", "Carlos", "quevedo");
-INSERT INTO cliente VALUES ("6254323T", "Luis", "quevedo");
-INSERT INTO cliente VALUES ("2223413Z", "Juan", "quevedo");
-INSERT INTO cliente VALUES ("5363542T", "Ana", "quevedo");
+INSERT INTO cliente VALUES ("3456543D", "Enrique", "Sendino", "Gorgoso", "Española", "654235454", "quevedo");
+INSERT INTO cliente VALUES ("9876443S", "Carlos", "Bouzas", "Alvaro", "Ecuatoriana", "666783422", "quevedo");
+INSERT INTO cliente VALUES ("6254323T", "Luis", "Reguilon", "Antunez", "Española", "621134577", "quevedo");
+INSERT INTO cliente VALUES ("2223413Z", "Juan", "Castro", "Urdiales", "Española", "665674234", "quevedo");
+INSERT INTO cliente VALUES ("5363542T", "Ana", "Ferrand", "Torres", "Argentina", "689532234", "quevedo");
 
 --
 
