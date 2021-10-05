@@ -172,9 +172,9 @@ if(isset($_POST["cuenta"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
                     </div>
                     <p class="lead"><?php echo $filacuenta["IBAN"] ?></p>
 
-                    <div class="text-dark bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+                    <div class="align-items-center row text-dark bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
 
-                        <form class="col-8" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                        <form class="col-12" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                             <div class="form-group">
                                 <label>
                                     <input type="radio" name="ingreso_gasto" value="transferencia" required> Transferencia

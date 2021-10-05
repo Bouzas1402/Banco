@@ -3,7 +3,7 @@
 require_once "config/configuracion.php";
 
 $IBAN = "IBAN13423590086532";
-
+$DNI = "9876443S";
 $IBAN_err = $cantidad_err = "";
 $tranferencia_hecha = "";
 
@@ -161,6 +161,8 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
 }
 
 
+
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -168,6 +170,16 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title></title>
+
+    <script type="text/javascript">
+
+        document.addEventListener("DOMContentLoaded", function (event){
+
+
+
+        });
+
+    </script>
 
     <!-- Iconos (version gratuita)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
@@ -208,6 +220,27 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
 </form>
 
 
+
+<div class="row align-content-center  h-75 mb-5">
+    <div class=" me-2 btn-group-vertical align-bottom w-100">
+        <div class="btn btn-default d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto fw-bold">cuenta 1</div>
+            <span class="badge bg-primary text-white rounded-pill">14</span>
+        </div>
+        <div class="btn btn-default d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto fw-bold">cuenta 2</div>
+            <span class="badge bg-primary text-white rounded-pill">14</span>
+        </div>
+        <div class="btn btn-default d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto fw-bold">cuenta 3</div>
+            <span class="badge bg-primary text-white rounded-pill">14</span>
+        </div>
+        <div class="btn btn-default d-flex justify-content-between align-items-start" onclick="">
+            <div class="ms-2 me-auto fw-bold">cuenta 3</div>
+            <span class="badge bg-primary text-white rounded-pill">14</span>
+        </div>
+    </div>
+</div>
 
 
 <script src="js/bootstrap.bundle.min.js"></script>
