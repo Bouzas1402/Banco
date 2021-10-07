@@ -17,6 +17,7 @@ services:
 
   db:
     image: 'mysql'
+    restart: "on-failure"
     container_name: servidor-mysql2
     ports:
       - 3306:3306

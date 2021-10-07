@@ -71,7 +71,6 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
                                 } else {
                                     echo "Oops! Something went wrong. Please try again later.";
                                 }
-                                $stmt->close();
                             }
                             // Se resta la cantidad a la cuenta de la sesión:
                             $sql = "UPDATE cuenta SET saldo = (saldo - ?) WHERE IBAN = ?";
@@ -82,9 +81,7 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
                                 } else {
                                     echo "Oops! Something went wrong. Please try again later.";
                                 }
-                                $stmt->close();
                             }
-                            $stmt->close();
                         }
                         // Si no esta en nuestra base de datos se creara el registro en movimientos_cuenta y se restara el saldo en la cuenta de la sesion:
                     } else {
@@ -97,7 +94,6 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
                             } else {
                                 echo "Oops! Something went wrong. Please try again later.";
                             }
-                            $stmt->close();
                         }
                         // Se resta la cantidad a la cuenta de la sesión:
                         $sql = "UPDATE cuenta SET saldo = (saldo - ?) WHERE IBAN = ?";
@@ -108,7 +104,6 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
                             } else {
                                 echo "Oops! Something went wrong. Please try again later.";
                             }
-                            $stmt->close();
                         }
                     }
 
@@ -121,6 +116,7 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
 
             $tranferencia_hecha = "Dinero transferido";
         }
+        $stmt->close();
     } elseif ($_POST["ingreso_gasto"] == "ingreso") {
 
         if ($_POST["cantidad"] > 1000) {
@@ -136,7 +132,6 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
-            $stmt->close();
         }
 
             $sql = "INSERT INTO movimientos_cuenta (IBAN, cantidad, cuenta_recepcion) VALUES (?, ?, ?)";
@@ -148,10 +143,11 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
                 } else {
                     echo "Oops! Something went wrong. Please try again later.";
                 }
-                $stmt->close();
+
             }
 
             $tranferencia_hecha = "Dinero transferido";
+            $stmt->close();
     }
 
     }
@@ -173,12 +169,29 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
 
     <script type="text/javascript">
 
-        document.addEventListener("DOMContentLoaded", function (event){
+        function loadXMLDoc() {
+            let xmlhttp = new XMLHttpRequest();
+            xmlhttp.onreadystatechange = function() {
+                if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
+                    if (xmlhttp.status == 200) {
+                        document.getElementById("hola").innerHTML = xmlhttp.responseText;
 
+                    }
+                    else if (xmlhttp.status == 400) {
+                        alert('There was an error 400');
+                    }
+                    else {
+                        alert('something else other than 200 was returned');
+                    }
+                }
+            };
 
+            xmlhttp.open("GET", "ajax.php?q="+<?php echo $DNI ?>, true);
 
-        });
+            xmlhttp.send();
+        };
 
+        loadXMLDoc();
     </script>
 
     <!-- Iconos (version gratuita)-->
@@ -237,7 +250,7 @@ if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_MET
         </div>
         <div class="btn btn-default d-flex justify-content-between align-items-start" onclick="">
             <div class="ms-2 me-auto fw-bold">cuenta 3</div>
-            <span class="badge bg-primary text-white rounded-pill">14</span>
+            <span id="hola" class=" badge bg-primary text-white rounded-pill">14</span>
         </div>
     </div>
 </div>

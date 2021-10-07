@@ -1,4 +1,15 @@
 <?php
+
+require_once "config/configuracion.php";
+
+$mysqli = conexionbd();
+
+if(isset(($_REQUEST["term"]))){
+
+    echo "<p>HOLAAAAAAAAAAAA<p>";
+
+}
+
 ?>
 
 <!doctype html>
@@ -11,29 +22,6 @@
         <script type="text/javascript">
 
 
-            function loadXMLDoc(url) {
-                let xmlhttp = new XMLHttpRequest();
-
-                xmlhttp.onreadystatechange = function() {
-                    if (xmlhttp.readyState == XMLHttpRequest.DONE) {   // XMLHttpRequest.DONE == 4
-                        if (xmlhttp.status == 200) {
-                            let objJson = xmlhttp.responseText;
-                            json(objJson);
-                        }
-                        else if (xmlhttp.status == 400) {
-                            alert('There was an error 400');
-                        }
-                        else {
-                            alert('something else other than 200 was returned');
-                        }
-                    }
-                };
-
-
-                xmlhttp.open("GET", "config/configuracion.php", true);
-
-                xmlhttp.send();
-            };
 
 
         </script>
