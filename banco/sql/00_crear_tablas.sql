@@ -9,11 +9,11 @@ CREATE TABLE cliente (
                          apellido2 VARCHAR (20),
                          necionalidad VARCHAR (20),
                          telefono VARCHAR (20),
-                         contrasena VARCHAR(10)
+                         contrasena VARCHAR(500)
 );
 
 INSERT INTO cliente VALUES ("3456543D", "Enrique", "Sendino", "Gorgoso", "Española", "654235454", "quevedo");
-INSERT INTO cliente VALUES ("9876443S", "Carlos", "Bouzas", "Alvaro", "Ecuatoriana", "666783422", "quevedo");
+INSERT INTO cliente VALUES ("05940455S", "Carlos", "Bouzas", "Alvaro", "Ecuatoriana", "666783422", "quevedo");
 INSERT INTO cliente VALUES ("6254323T", "Luis", "Reguilon", "Antunez", "Española", "621134577", "quevedo");
 INSERT INTO cliente VALUES ("2223413Z", "Juan", "Castro", "Urdiales", "Española", "665674234", "quevedo");
 INSERT INTO cliente VALUES ("5363542T", "Ana", "Ferrand", "Torres", "Argentina", "689532234", "quevedo");
@@ -31,8 +31,8 @@ CREATE TABLE cuenta (
 INSERT INTO cuenta (IBAN, saldo, DNI) VALUES ("IBAN45633673457546", 1900.50, "3456543D");
 INSERT INTO cuenta (IBAN, saldo, DNI) VALUES ("IBAN57687544513452", 8120.79, "3456543D");
 INSERT INTO cuenta (IBAN, saldo, DNI) VALUES ("IBAN78967563423443", 3267.99, "3456543D");
-INSERT INTO cuenta (IBAN, saldo, DNI) VALUES ("IBAN13423590086532", 1245.50, "9876443S");
-INSERT INTO cuenta (IBAN, saldo, DNI) VALUES ("IBAN34778545256673", 1768.34, "9876443S");
+INSERT INTO cuenta (IBAN, saldo, DNI) VALUES ("IBAN13423590086532", 1245.50, "05940455S");
+INSERT INTO cuenta (IBAN, saldo, DNI) VALUES ("IBAN34778545256673", 1768.34, "05940455S");
 INSERT INTO cuenta (IBAN, saldo, DNI) VALUES ("IBAN88812245234526", 6245.20, "6254323T");
 INSERT INTO cuenta (IBAN, saldo, DNI) VALUES ("IBAN24434577221163", 4695.15, "2223413Z");
 INSERT INTO cuenta (IBAN, saldo, DNI) VALUES ("IBAN86453452211111", 3760.82, "5363542T");

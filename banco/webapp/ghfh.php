@@ -87,10 +87,7 @@ if(isset($_POST["cuenta"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <style>
 
-
-    </style>
 
 </head>
 <body>
@@ -128,32 +125,6 @@ if(isset($_POST["cuenta"]) && $_SERVER["REQUEST_METHOD"] == "POST"){
 
 <div class="container-fluid">
     <div class="row">
-
-
-        <div class="col-sm-4 col-12">
-
-            <h3 class="my-5 text-center"><?php echo $filacliente["nombre"] . " " . $filacliente["contrasena"] ?></h3>
-            <div class="row align-content-center  h-75 mb-5">
-                <ol class=" me-2 list-group align-bottom w-100">
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto fw-bold">cuenta 1</div>
-                        <span class="badge bg-primary text-white rounded-pill">14</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto fw-bold">cuenta 2</div>
-                        <span class="badge bg-primary text-white rounded-pill">14</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto fw-bold">cuenta 3</div>
-                        <span class="badge bg-primary text-white rounded-pill">14</span>
-                    </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-start">
-                        <div class="ms-2 me-auto fw-bold">cuenta 3</div>
-                        <span class="badge bg-primary text-white rounded-pill">14</span>
-                    </li>
-                </ol>
-            </div>
-        </div>
 
         <div class="col-sm-8 col-12">
 
