@@ -4,7 +4,7 @@ session_start();
  
 // Check if the user is already logged in, if yes then redirect him to welcome page
 if(isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true){
-    header("location: pruebas.php");
+    header("location: index.php");
     exit;
 }
  
@@ -64,10 +64,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                             // Store data in session variables
                             $_SESSION["loggedin"] = true;
                             $_SESSION["dni"] = $dni;
+                            $_SESSION["iban"] = "";
+                            $_SESSION["saldo"] = 0;
 
                             
                             // Redirect user to welcome page
-                            header("location: pruebas.php");
+                            header("location: index.php");
 
                         } else{
                             // Password is not valid, display a generic error message
@@ -86,7 +88,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $stmt->close();
         }
     }
-    
     // Close connection
     $mysqli->close();
 }
@@ -105,7 +106,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
 
     <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
         .bd-placeholder-img {
@@ -151,7 +152,7 @@ if(!empty($login_err)){
      <div class="form-group"> -->
     <input type="submit" class="btn btn-lg btn-primary btn-block" value="Acceder">
     <!-- </div>-->
-    <p>¿No tienes una cuenta? <a href="registroEmilio.php">¡Regístrate!</a>.</p>
+    <p>¿No tienes una cuenta? <a href="registro.php">¡Regístrate!</a>.</p>
 </form>
 <!-- </div>-->
 </body>

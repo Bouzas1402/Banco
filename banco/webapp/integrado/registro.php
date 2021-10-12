@@ -4,7 +4,7 @@ require_once "config/configuracion.php";
 
 // Define variables and initialize with empty values
 $nombre = $apellido1 = $apellido2 = $nacionalidad = $telefono = $dni = $contrasena = $confirm_contrasena = "";
-$nombre_err = $apellido1_err = $apellido2_err = $nacionalidad_err = $telefono_err =$dni_err = $contrasena_err = $confirm_password_err = "";
+$nombre_err = $apellido1_err = $apellido2_err = $nacionalidad_err = $telefono_err =$dni_err = $contrasena_err = $confirm_contrasena_err = "";
 
 // Processing form data when form is submitted
 if($_SERVER["REQUEST_METHOD"] == "POST"){
@@ -142,7 +142,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Redirect to login page
             if($stmt->execute()){
 
-                header("location: loginEmilio.php");
+                header("location: login.php");
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
@@ -164,7 +164,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 <head>
     <meta charset="UTF-8">
     <title>Registro</title>
-    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
     <style>
         body{ font: 14px sans-serif; }
         .wrapper{ width: 360px; padding: 20px; }

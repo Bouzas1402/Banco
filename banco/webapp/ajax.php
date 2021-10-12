@@ -1,56 +1,162 @@
 <?php
-
 require_once "config/configuracion.php";
 
-$mysqli = conexionbd();
 
-if(isset(($_REQUEST["term"]))){
 
-    echo "<p>HOLAAAAAAAAAAAA<p>";
 
+
+$DNI = "15940455S";
+$contrasena = "";
+$contrasena_err = $crear_cuenta_err = "";
+
+
+if(isset($_POST["contrasena_crear_cuenta"]) && isset($_POST["confirmar"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
+
+    if(empty(trim($_POST["contrasena_crear_cuenta"]))){
+        $contrasena_err = "Por favor ingrese una contraseña.";
+    } else{
+        $contrasena = trim($_POST["contrasena_crear_cuenta"]);
+    }
+
+
+    if(empty($contrasena_err)){
+
+        $mysqli = conexionbd();
+
+
+
+
+        $sql = "SELECT IBAN FROM cuenta WHERE DNI = ?";
+
+        if ($stmt = $mysqli->prepare($sql)) {
+
+
+            $stmt->bind_param("s", $DNI);
+            if ($stmt->execute()) {
+
+                $resultado = $stmt->num_rows();
+
+                if($resultado >= 3){
+                    $crear_cuenta_err = "Ya tienes tres cuentas, para abrir otra dirijase a una de nuestras oficinas.";
+                } else {
+                    $ibans = $stmt->get_result();
+                    $ibanCorrecto = true;
+                    do {
+                        $ibanCorrecto = true;
+                        $nuevo_iban = crearIban();
+                        foreach ($ibans as $valor){
+                            if ($valor == $nuevo_iban){
+                                $ibanCorrecto = false;
+                            }
+                        }
+                    } while($ibanCorrecto);
+
+
+                    $sql = "INSERT INTO cuenta (IBAN, saldo, DNI) VALUES (?, 3500, ?)";
+
+                    if ($stmt = $mysqli->prepare($sql)){
+
+
+
+                        $stmt->bind_param("ss", $nuevo_iban,$dni);
+                        // Redirect to login page
+                        if($stmt->execute()){
+
+                            header("location: login.php");
+                        } else {
+                            echo "Oops! Something went wrong. Please try again later.";
+                        }
+
+                    }
+
+
+                }
+
+
+
+
+            } else {
+                echo "Oops! Something went wrong. Please try again later.";
+            }
+        }
+        $mysqli->close();
+    }
 }
 
-?>
 
+
+
+
+
+
+
+
+
+function crearIban (){
+    $nuevo_iban = "IBAN";
+    for ($i = 0; $i < 14; $i++){
+        $nuevo_iban = $nuevo_iban . rand(0,9);
+    }
+    return $nuevo_iban;
+}
+
+
+?>
 <!doctype html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title></title>
-
-        <script type="text/javascript">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
 
 
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
 
-        </script>
 
-    </head>
-    <body>
+</head>
+<body>
 
-    <div class="row align-content-center  h-75 mb-5">
-        <ol id="xhr" class="me-2 list-group align-bottom w-100">
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto fw-bold">cuenta 1</div>
-                <span class="badge bg-primary text-white rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto fw-bold">cuenta 2</div>
-                <span class="badge bg-primary text-white rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto fw-bold">cuenta 3</div>
-                <span class="badge bg-primary text-white rounded-pill">14</span>
-            </li>
-            <li class="list-group-item d-flex justify-content-between align-items-start">
-                <div class="ms-2 me-auto fw-bold">cuenta 3</div>
-                <span class="badge bg-primary text-white rounded-pill">14</span>
-            </li>
-        </ol>
+
+<div class="w-100 my-lg-3 ps-lg-3">
+    <div class="bg-dark me-lg-3 pt-3 px-3 pt-lg-5 px-lg-5 text-center text-white overflow-hidden">
+        <div class="my-3 py-3">
+            <h2 class="display-5">Another headline</h2>
+            <p class="lead">And an even wittier subheading.</p>
+        </div>
+
+
+
+        <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
+            <form class="col" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+                <div class="input-group mb-3">
+                    <div class="input-group-prepend h-100">
+                        <span class="input-group-text">Contraseña</span>
+                    </div>
+                    <input type="password" class="form-control <?php echo (!empty($contrasena_err)) ? 'is-invalid' : '' ?>" name="contrasena_crear_cuenta">
+                    <span class="invalid-feedback"><?php echo $contrasena_err; ?></span>
+                    <div class="input-group-prepend">
+                        <div class="input-group-text h-100">
+                            <input type="checkbox" name="confirmar" value="confirmar" required>
+                            <input type="submit" class="btn btn-primary" value="confirmar">
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+
+
+
     </div>
+</div>
 
 
-    <script src="ajax.js"/>
-    </body>
+
+
+<script src="js/bootstrap.bundle.min.js"></script>
+</body>
 </html>
+
