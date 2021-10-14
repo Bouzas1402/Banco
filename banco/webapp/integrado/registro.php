@@ -16,7 +16,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         $dni_err = "El DNI sólo puede contener letras, numeros, y guión bajo.";
     } else{
         // Prepare a select statement
-        $sql = "SELECT * FROM cliente WHERE DNI = ?";
+        $sql = "SELECT * FROM cliente WHERE dni = ?";
 
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -100,9 +100,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
 
         // Prepare an insert statement
         $sql = "INSERT INTO cliente VALUES (?, ?, ?, ?, ?, ?, ?)";
-
         if($stmt = $mysqli->prepare($sql)){
-
             // Set parameters
             $param_dni = $dni;
             $param_nombre = $nombre;
@@ -114,19 +112,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             // Bind variables to the prepared statement as parameters
             $stmt->bind_param("sssssss", $param_dni, $param_nombre, $param_apellido1,
                 $param_apellido2, $param_nacionalidad, $param_telefono, $param_contrasena);
-
             // Creates a password hash
-
             // Attempt to execute the prepared statement
             if($stmt->execute()){
-
-
             } else{
                 echo "Ha habido un error. Por favor inténtelo de nuevo más tarde.";
             }
-
             // Close statement
-
         }
 
         $nuevo_iban = "IBAN";
@@ -134,23 +126,19 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             $nuevo_iban = $nuevo_iban . rand(0,9);
         }
 
-        $sql = "INSERT INTO cuenta (IBAN, saldo, DNI) VALUES (?, 3500, ?)";
-
+        $sql = "INSERT INTO cuenta (iban, saldo, dni) VALUES (?, 3500, ?)";
         if ($stmt = $mysqli->prepare($sql)){
-
             $stmt->bind_param("ss", $nuevo_iban,$dni);
             // Redirect to login page
             if($stmt->execute()){
-
                 header("location: login.php");
             } else {
                 echo "Oops! Something went wrong. Please try again later.";
             }
-
         }
-        $stmt->close();
-    }
 
+    }
+    $stmt->close();
     // Close connection
     $mysqli->close();
 }

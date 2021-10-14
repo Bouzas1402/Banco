@@ -5,19 +5,19 @@ require_once "config/configuracion.php";
 
 function hacerTransferencia ($cantidad, $cuenta, $iban, $ingreso_gasto){
     $saldo = $tranferencia_hecha = "";
-    $IBAN_err = $cantidad_err = "";
+    $iban_err = $cantidad_err = "";
 
     // se realiza la conexión:
     $mysqli = conexionbd();
     if ($ingreso_gasto == "transferencia") {
         // Comprobamos que el IBAN es un IBAN valido
         if (empty(trim($cuenta))) {
-            $IBAN_err = "Introduzca un IBAN.";
+            $iban_err = "Introduzca un IBAN.";
         } elseif (!preg_match("/^IBAN[0-9]{14}/", $cuenta)) {
-            $IBAN_err = "No es un IBAN valido.";
+            $iban_err = "No es un IBAN valido.";
         }
         // Sacamos el saldo de la cuenta de la sesion;
-        $sql = "SELECT saldo FROM cuenta WHERE IBAN = ?";
+        $sql = "SELECT saldo FROM cuenta WHERE iban = ?";
         if ($stmt = $mysqli->prepare($sql)) {
             $stmt->bind_param("s", $iban);
             if ($stmt->execute()) {
@@ -36,7 +36,7 @@ function hacerTransferencia ($cantidad, $cuenta, $iban, $ingreso_gasto){
         }
         if (empty($IBAN_err) && empty($cantidad_err)) {
             //Se busca el IBAN al que se quiere hacer la transferencia:
-            $sql = "SELECT * FROM cuenta WHERE IBAN = ?";
+            $sql = "SELECT * FROM cuenta WHERE iban = ?";
             if ($stmt = $mysqli->prepare($sql)) {
                 $stmt->bind_param("s", $cuenta);
                 if ($stmt->execute()) {
@@ -44,7 +44,7 @@ function hacerTransferencia ($cantidad, $cuenta, $iban, $ingreso_gasto){
                     // Si el IBAN esta en nuestra base de datos se sumara la cantidad a su saldo y se le restara al saldo de la cuenta de la sesión y se creara un registro en moviminetos_cuenta:
                     if ($stmt->num_rows == 1) {
                         // Se crea el registro en movimientos cuenta:
-                        $sql = "INSERT INTO movimientos_cuenta (IBAN, cantidad, cuenta_recepcion) VALUES (?, ?, ?)";
+                        $sql = "INSERT INTO movimientos_cuenta (iban, cantidad, cuenta_recepcion) VALUES (?, ?, ?)";
                         if ($stmt = $mysqli->prepare($sql)) {
                             $stmt->bind_param("sds", $iban, $cantidad, $cuenta);
                             if ($stmt->execute()) {
@@ -53,7 +53,7 @@ function hacerTransferencia ($cantidad, $cuenta, $iban, $ingreso_gasto){
                                 echo "Oops! Something went wrong. Please try again later.";
                             }
                             // Se suma la cantidad a la cuenta de nuestra base de datos:
-                            $sql = "UPDATE cuenta SET saldo = saldo + ? WHERE IBAN = ?";
+                            $sql = "UPDATE cuenta SET saldo = saldo + ? WHERE iban = ?";
                             if ($stmt = $mysqli->prepare($sql)) {
                                 $stmt->bind_param("ds", $cantidad, $cuenta);
                                 if ($stmt->execute()) {
@@ -63,7 +63,7 @@ function hacerTransferencia ($cantidad, $cuenta, $iban, $ingreso_gasto){
                                 }
                             }
                             // Se resta la cantidad a la cuenta de la sesión:
-                            $sql = "UPDATE cuenta SET saldo = (saldo - ?) WHERE IBAN = ?";
+                            $sql = "UPDATE cuenta SET saldo = (saldo - ?) WHERE iban = ?";
                             if ($stmt = $mysqli->prepare($sql)) {
                                 $stmt->bind_param("ds", $cantidad, $iban);
                                 if ($stmt->execute()) {
@@ -77,7 +77,7 @@ function hacerTransferencia ($cantidad, $cuenta, $iban, $ingreso_gasto){
                         // Si no esta en nuestra base de datos se creara el registro en movimientos_cuenta y se restara el saldo en la cuenta de la sesion:
                     } else {
                         // Se crea el registro en movimientos_cuenta
-                        $sql = "INSERT INTO movimientos_cuenta (IBAN, cantidad) VALUES (?, ?, ?)";
+                        $sql = "INSERT INTO movimientos_cuenta (iban, cantidad) VALUES (?, ?, ?)";
                         if ($stmt = $mysqli->prepare($sql)) {
                             $stmt->bind_param("sds", $iban, $cantidad, $cuenta);
                             if ($stmt->execute()) {
@@ -87,7 +87,7 @@ function hacerTransferencia ($cantidad, $cuenta, $iban, $ingreso_gasto){
                             }
                         }
                         // Se resta la cantidad a la cuenta de la sesión:
-                        $sql = "UPDATE cuenta SET saldo = (saldo - ?) WHERE IBAN = ?";
+                        $sql = "UPDATE cuenta SET saldo = (saldo - ?) WHERE iban = ?";
                         if ($stmt = $mysqli->prepare($sql)) {
                             $stmt->bind_param("ds", $cantidad, $iban);
                             if ($stmt->execute()) {
@@ -107,7 +107,7 @@ function hacerTransferencia ($cantidad, $cuenta, $iban, $ingreso_gasto){
         $stmt->close();
     } elseif ($ingreso_gasto == "ingreso") {
 
-        $sql = "SELECT saldo FROM cuenta WHERE IBAN = ?";
+        $sql = "SELECT saldo FROM cuenta WHERE iban = ?";
         if ($stmt = $mysqli->prepare($sql)) {
             $stmt->bind_param("s", $iban);
             if ($stmt->execute()) {
@@ -122,7 +122,7 @@ function hacerTransferencia ($cantidad, $cuenta, $iban, $ingreso_gasto){
             $cantidad_err = "Para ingresar mas dinero debe acudir a una de nuestras oficinas.";
         }
         if(empty($cantidad_err)){
-            $sql = "UPDATE cuenta SET saldo = (saldo + ?) WHERE IBAN = ?";
+            $sql = "UPDATE cuenta SET saldo = (saldo + ?) WHERE iban = ?";
             if ($stmt = $mysqli->prepare($sql)) {
                 $stmt->bind_param("ds", $cantidad, $iban);
                 if ($stmt->execute()) {
@@ -132,7 +132,7 @@ function hacerTransferencia ($cantidad, $cuenta, $iban, $ingreso_gasto){
                     echo "Oops! Something went wrong. Please try again later.";
                 }
             }
-            $sql = "INSERT INTO movimientos_cuenta (IBAN, cantidad, cuenta_recepcion) VALUES (?, ?, ?)";
+            $sql = "INSERT INTO movimientos_cuenta (iban, cantidad, cuenta_recepcion) VALUES (?, ?, ?)";
             if ($stmt = $mysqli->prepare($sql)) {
                 $ingreso_web = "ingreso desde web";
                 $stmt->bind_param("sds", $iban, $cantidad, $ingreso_web);
@@ -148,5 +148,5 @@ function hacerTransferencia ($cantidad, $cuenta, $iban, $ingreso_gasto){
     }
     // Se cierra la conexión:
     $mysqli->close();
-    return array($saldo["saldo"], $tranferencia_hecha, $IBAN_err, $cantidad_err);
+    return array($saldo["saldo"], $tranferencia_hecha, $iban_err, $cantidad_err);
 }

@@ -1,13 +1,13 @@
 <?php
 // Fichero de configuracion:
-define("DB_USUARIO", "quevedo");
-define("DB_PASSWORD", "quevedo");
 define("DB_SERVER", "db");
-define("DB_NOMBRE", "banco");
+define("DB_USERNAME", "banco");
+define("DB_PASSWORD", "banco");
+define("DB_NAME", "bancodb");
 
 
 function conexionbd(){
-$mysqli = new mysqli(DB_SERVER, DB_USUARIO, DB_PASSWORD, DB_NOMBRE);
+$mysqli = new mysqli(DB_SERVER, DB_USERNAME, DB_PASSWORD, DB_NAME);
 
 // Check connection
 if($mysqli === false) {

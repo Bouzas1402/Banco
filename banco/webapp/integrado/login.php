@@ -38,7 +38,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     // Validate credentials
     if(empty($dni_err) && empty($contrasena_err)){
         // Prepare a select statement
-        $sql = "SELECT DNI, contrasena FROM cliente WHERE DNI = ?";
+        $sql = "SELECT dni, contrasena FROM cliente WHERE dni = ?";
         
         if($stmt = $mysqli->prepare($sql)){
             // Bind variables to the prepared statement as parameters
@@ -85,8 +85,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             }
 
             // Close statement
-            $stmt->close();
+
         }
+        $stmt->close();
     }
     // Close connection
     $mysqli->close();

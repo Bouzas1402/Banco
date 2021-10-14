@@ -3,7 +3,7 @@ require_once "config/configuracion.php";
 $cuenta=$_GET["cuenta"];
 $mysqli = conexionbd();
 
-$sql = "SELECT * FROM movimientos_cuenta WHERE IBAN = ?";
+$sql = "SELECT * FROM movimientos_cuenta WHERE iban = ?";
 
 if ($stmt = $mysqli->prepare($sql)) {
 

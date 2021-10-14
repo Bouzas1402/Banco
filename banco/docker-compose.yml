@@ -23,10 +23,10 @@ services:
       - 3306:3306
     command: --default-authentication-plugin=mysql_native_password
     environment:
-      MYSQL_ROOT_PASSWORD: quevedo
-      MYSQL_DATABASE: banco
-      MYSQL_USER: quevedo
-      MYSQL_PASSWORD: quevedo
+      MYSQL_ROOT_PASSWORD: banco
+      MYSQL_DATABASE: bancodb
+      MYSQL_USER: banco
+      MYSQL_PASSWORD: banco
     volumes:
       - ./sql:/docker-entrypoint-initdb.d
       - ./db-data:/var/lib/mysql

@@ -10,9 +10,9 @@ if(!isset($_SESSION["loggedin"]) || $_SESSION["loggedin"] !== true) {
     exit;
 }
 
-$DNI = $_SESSION["dni"];
+$dni = $_SESSION["dni"];
 $saldo = $tranferencia_hecha = $contrasena = $cuenta_creada = "";
-$IBAN_err = $cantidad_err = $contrasena_err = $crear_cuenta_err = "";
+$iban_err = $cantidad_err = $contrasena_err = $crear_cuenta_err = "";
 
 
 if(isset($_COOKIE['contador'])){
@@ -29,9 +29,9 @@ else {
 
 if (empty(trim($_SESSION["iban"]))) {
     $mysqli = conexionbd();
-    $sql = "SELECT IBAN, saldo FROM cuenta WHERE DNI LIKE ? LIMIT 1";
+    $sql = "SELECT iban, saldo FROM cuenta WHERE dni LIKE ? LIMIT 1";
     if($stmt = $mysqli->prepare($sql)) {
-        $stmt->bind_param("s", $DNI,);
+        $stmt->bind_param("s", $dni,);
         if ($stmt->execute()) {
             $stmt->store_result();
             $stmt->bind_result($_SESSION["iban"], $_SESSION["saldo"]);
@@ -47,13 +47,12 @@ if (empty(trim($_SESSION["iban"]))) {
 // Si se envia el formulario con cuenta y cantidad se mete en el if:
 if(isset($_POST["cuenta"]) && isset($_POST["cantidad"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     include 'tranferencias.php';
-    list($_SESSION["saldo"], $tranferencia_hecha, $IBAN_err, $cantidad_err) = hacerTransferencia($_POST["cantidad"], $_POST["cuenta"], $_SESSION["iban"], $_POST["ingreso_gasto"]);
+    list($_SESSION["saldo"], $tranferencia_hecha, $iban_err, $cantidad_err) = hacerTransferencia($_POST["cantidad"], $_POST["cuenta"], $_SESSION["iban"], $_POST["ingreso_gasto"]);
 }
 
 if(isset($_POST["contrasena_crear_cuenta"]) && isset($_POST["confirmar"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
    include "crearCuenta.php";
-
-   list($contrasena_err, $cantidad_err, $crear_cuenta_err, $cuenta_creada) = crearCuenta($DNI, $_POST["contrasena_crear_cuenta"]);
+   list($contrasena_err, $cantidad_err, $crear_cuenta_err, $cuenta_creada) = crearCuenta($dni, $_POST["contrasena_crear_cuenta"]);
 }
 
 if (isset($_POST["cambiar_cuenta"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
@@ -63,12 +62,9 @@ if (isset($_POST["cambiar_cuenta"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 }
 
 if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
-    session_start();
     session_destroy();
     header("location: login.php");
 }
-
-
 
 
 ?>
@@ -101,7 +97,7 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                     }
                 }
             };
-            xmlhttp.open("GET", "cuentas.php/?dni=<?php echo $DNI?>", true);
+            xmlhttp.open("GET", "cuentas.php/?dni=<?php echo $dni?>", true);
             xmlhttp.send();
         };
 
@@ -162,8 +158,6 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
                 <path d="M7.5 1v7h1V1h-1z"/>
                 <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
-
-
             </svg>
         </button>
     </form>
@@ -217,8 +211,8 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                             </div>
                             <div class="form-group">
                                 <label>Cuenta</label>
-                                <input type="text" name="cuenta" step="any" class="form-control  <?php echo (!empty($IBAN_err)) ? 'is-invalid' : ''; ?>" >
-                                <span class="invalid-feedback"><?php echo $IBAN_err; ?></span>
+                                <input type="text" name="cuenta" step="any" class="form-control  <?php echo (!empty($iban_err)) ? 'is-invalid' : ''; ?>" >
+                                <span class="invalid-feedback"><?php echo $iban_err; ?></span>
                             </div>
                             <div class="form-group">
                                 <label>cantidad</label>
@@ -244,8 +238,6 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                         <p class="lead">Cuenta credito con 3500 € iniciales</p>
                     </div>
 
-
-
                     <div class="bg-light shadow-sm mx-auto" style="width: 80%; height: 300px; border-radius: 21px 21px 0 0;">
                         <form class="col" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                             <div class="input-group mb-3">
@@ -257,7 +249,6 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                                     <div class="input-group-text h-100">
                                         <div class="input-group-text h-100">
                                             <input type="checkbox" name="confirmar" value="confirmar" required>
-
                                         </div>
                                         <input type="submit" class="btn btn-primary" value="confirmar">
                                     </div>
@@ -269,7 +260,7 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                         </form>
 
                         <div class="col overflow-scroll text-dark h-75">
-                            <h1>Section 1</h1>
+                            <h1>Condiciones para la creación de una nueva cuenta:</h1>
                             <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
                             <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
                             <p>Try to scroll this page and look at the navigation bar while scrolling!</p>

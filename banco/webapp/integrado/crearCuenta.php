@@ -13,7 +13,7 @@ function crearCuenta ($dni, $contrasena_crear_cuenta){
     }
     if(empty($contrasena_err)) {
         $mysqli = conexionbd();
-        $sql = "SELECT contrasena FROM cliente WHERE DNI = ?";
+        $sql = "SELECT contrasena FROM cliente WHERE dni = ?";
         if ($stmt = $mysqli->prepare($sql)) {
             // Bind variables to the prepared statement as parameters
             $stmt->bind_param("s", $dni);
@@ -25,7 +25,7 @@ function crearCuenta ($dni, $contrasena_crear_cuenta){
                 $stmt->bind_result($hashed_password);
                 if ($stmt->fetch()) {
                     if (password_verify($contrasena, $hashed_password)) {
-                        $sql = "SELECT IBAN FROM cuenta WHERE DNI = ?";
+                        $sql = "SELECT iban FROM cuenta WHERE dni = ?";
                         if ($stmt = $mysqli->prepare($sql)) {
                             $stmt->bind_param("s", $dni);
                             if ($stmt->execute()) {
@@ -37,7 +37,7 @@ function crearCuenta ($dni, $contrasena_crear_cuenta){
                                     do {
                                         $ibanCorrecto = false;
                                         $nuevo_iban = crearIban();
-                                        $sql = "SELECT * FROM cuenta WHERE IBAN = ?";
+                                        $sql = "SELECT * FROM cuenta WHERE iban = ?";
                                         if ($stmt = $mysqli->prepare($sql)){
                                             $stmt->bind_param("s", $nuevo_iban);
                                             if ($stmt->execute()){
@@ -50,7 +50,7 @@ function crearCuenta ($dni, $contrasena_crear_cuenta){
                                             }
                                         }
                                     } while ($ibanCorrecto);
-                                    $sql = "INSERT INTO cuenta (IBAN, saldo, DNI) VALUES (?, 3500, ?)";
+                                    $sql = "INSERT INTO cuenta (iban, saldo, dni) VALUES (?, 3500, ?)";
                                     if ($stmt = $mysqli->prepare($sql)) {
                                         $stmt->bind_param("ss", $nuevo_iban, $dni);
                                         // Redirect to login page
