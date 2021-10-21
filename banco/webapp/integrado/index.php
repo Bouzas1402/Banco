@@ -77,8 +77,16 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
     <!-- Iconos (version gratuita)-->
     <script src="https://use.fontawesome.com/releases/v5.15.3/js/all.js" crossorigin="anonymous"></script>
     <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="assets/css/font.css">
     <!-- Bootstrap core CSS -->
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+
+    <style type="text/css">
+
+        .colorCorporativo {
+            background-color:rgba(251,102,16,0.88);
+        }
+    </style>
 
     <script type="text/javascript">
 
@@ -133,29 +141,14 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 <body>
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark" aria-label="Third navbar example">
-    <a class="navbar-brand" href="#">
-        <img class="align-top" src="#" width="30" height="20" alt="">
-    </a>
-    <button class="align-content-between navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample03" aria-controls="navbarsExample03" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarsExample03">
-        <ul class="navbar-nav me-auto mb-2 mb-sm-0">
-            <li class="nav-item">
-                <a class="nav-link" aria-current="page" href="#">Home</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Link</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-            </li>
-        </ul>
+<nav class="colorCorporativo navbar navbar-expand-sm d-flex justify-content-between align-items-center">
+    <div class="navbar-brand">
+        <img class="align-top mx-3" src="assets/img/confundido.png" width="45px" height="45px" alt="">
     </div>
+    <div class="fontPanda">BANCA PANDA</div>
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
-        <button class="align-content-between btn  me-2 bg-white " aria-label="Close" type="submit" name="cerrarSesion">
-            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-power" viewBox="0 0 16 16">
+        <button class="btn me-2 bg-dark " aria-label="Close" type="submit" name="cerrarSesion">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-power text-white" viewBox="0 0 16 16">
                 <path d="M7.5 1v7h1V1h-1z"/>
                 <path d="M3 8.812a4.999 4.999 0 0 1 2.578-4.375l-.485-.874A6 6 0 1 0 11 3.616l-.501.865A5 5 0 1 1 3 8.812z"/>
             </svg>
@@ -164,17 +157,11 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 </nav>
 
 
-<div class="cookies">
-    <h2>Cookies</h2>
-    <p>¿Aceptas nuestras cookies?</p>
-    <a href="?politica-cookies=1">Aceptar</a>
-</div>
-
-
 
 <div class="container-fluid">
     <div class="row">
         <div class="col-lg-4 col-12">
+            <h3 class="my-5 text-center">HOLA</h3>
             <h3 class="my-5 text-center">Carlos Bouzas</h3>
             <div class="row align-content-center  h-75 mb-5">
                 <ol class="me-2 list-group  w-100">
@@ -187,9 +174,9 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
         </div>
 
-        <div class="col-lg-8 col-12">
-            <div class="w-100 my-lg-3 ps-lg-3">
-                <div class="bg-dark me-lg-3 pt-3 px-3 pt-lg-5 px-lg-5 text-center text-white overflow-hidden">
+        <div class="col-lg-8 px-0">
+            <div class="w-100">
+                <div class="bg-dark w-100 me-lg-3 pt-3 px-3 pt-lg-5 px-lg-5 text-center text-white overflow-hidden">
                     <div class="row justify-content-center my-3 py-3">
                         <div class="col-2">
                             <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-currency-exchange" viewBox="0 0 16 16">
@@ -227,8 +214,8 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                     </div>
                 </div>
             </div>
-            <div class="w-100 my-lg-3 ps-lg-3">
-                <div class="bg-dark me-lg-3 pt-3 px-3 pt-lg-5 px-lg-5 text-center text-white overflow-hidden">
+            <div class="w-100">
+                <div class="bg-dark w-100 me-lg-3 pt-3 px-3 pt-lg-5 px-lg-5 text-center text-white overflow-hidden">
                     <div class="my-3 py-3">
                         <svg xmlns="http://www.w3.org/2000/svg" width="70" height="70" fill="currentColor" class="me-5 bi bi-piggy-bank" viewBox="0 0 16 16">
                             <path d="M5 6.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0zm1.138-1.496A6.613 6.613 0 0 1 7.964 4.5c.666 0 1.303.097 1.893.273a.5.5 0 0 0 .286-.958A7.602 7.602 0 0 0 7.964 3.5c-.734 0-1.441.103-2.102.292a.5.5 0 1 0 .276.962z"/>
@@ -261,19 +248,244 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 
                         <div class="col overflow-scroll text-dark h-75">
                             <h1>Condiciones para la creación de una nueva cuenta:</h1>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
-                            <p>Try to scroll this page and look at the navigation bar while scrolling!</p>
+                            <p>Mediante el contrato de depósito a la vista, se permite al cliente ingresar dinero en una
+                                entidad de crédito, y esta queda obligada a su devolución en el momento en que el titular
+                                lo solicite, así como a prestar el denominado «servicio de caja», en virtud del cual la
+                                entidad se obliga a realizar pagos y cobros a terceros en ejecución de órdenes que recibe
+                                del cliente, de forma que se convierte en mandataria singular del cliente y administra,
+                                como si fueran propios, los fondos disponibles a favor de este. Por lo general, la entidad
+                                suele ofrecer al cliente una remuneración o tipo de interés por el dinero depositado y
+                                puede cobrar comisión por las operaciones incluidas en el servicio de caja. Es habitual
+                                que el contrato de apertura de cuenta se concierte con duración indefinida y con facultad
+                                de las partes de darlo por terminado en cualquier momento (al estar basado, como el de
+                                comisión, en la mutua confianza); para su cancelación, deberá seguirse el procedimiento
+                                establecido en el propio contrato y/o en la normativa de aplicación.
+                                En el expediente R-201810900, la entidad en la que el reclamante había abierto una
+                                cuenta corriente indicó que no se podía solicitar la cancelación a distancia, sino que debía
+                                solicitarla físicamente en la oficina bancaria. El DCMR consideró que la entidad se había
+                                apartado de las buenas prácticas bancarias, al no acreditar que dicha exigencia estuviera
+                                prevista en el correspondiente contrato en el que, además, estaba pactada la operativa en
+                                banca a distancia mediante usuario y claves sustitutivos de la firma manuscrita.
+                                La Ley 16/2009, de 13 de noviembre, de Servicios de Pago (LSP), define la cuenta de
+                                pago como «una cuenta a nombre de uno o varios usuarios de servicios de pago que sea
+                                utilizada para la ejecución de operaciones de pago». La cuenta de pago es el equivalente
+                                al depósito o cuenta a la vista bancaria (bajo la forma tanto de cuenta corriente como de
+                                libreta de ahorros), en la que se practican diversos adeudos (ordenante) y abonos
+                                (beneficiario). La ley fue desarrollada por la Orden EHA/1608/2010, de 14 de junio, sobre
+                                transparencia de las condiciones y requisitos de información aplicables a los servicios de
+                                pago (BOE del 18). Ambas normas son aplicables también a no consumidores, salvo que
+                                se pacte lo contrario.
+                                La apertura de una cuenta requiere el consentimiento expreso y la aceptación de sus
+                                condiciones por todas las partes que la formalizan, siempre dentro del principio
+                                fundamental de la libertad de contratación que inspira nuestro ordenamiento jurídico. Sin
+                                perjuicio de dicho principio, la normativa actual establece una serie de requerimientos que
+                                las entidades deben observar, en relación tanto con la información y con las explicaciones
+                                previas al contrato como con el contenido del contrato. La letra que se ha de utilizar en
+                                cualquier documento de información al cliente, en fase tanto precontractual como
+                                contractual, debe tener un tamaño apropiado para facilitar su lectura, y, en todo caso, la
+                                letra minúscula que se utilice no podrá tener una altura inferior a 1,5 mm.
+                                Por otra parte, la normativa de servicios de pago atribuye la carga de la prueba, del
+                                cumplimiento de los requisitos de información en ella establecidos, a las entidades
+                                proveedoras de servicios de pago (art. 20 de la LSP).
+                                El 5 de febrero de 2016 entró en vigor la Orden ECC/2316/2015, de 4 de noviembre,
+                                relativa a las obligaciones de información y clasificación de productos financieros (BOE
+                                del 5 de noviembre), ya citada, conocida como «Orden de los semáforos» u «Orden de los
+                                números», por cuanto establece una clasificación de los productos financieros mediante
+                                una escala de seis colores y seis números (del 1 al 6), que puede ser sustituida por una
+                                escala solo numérica. Por ejemplo, el número 1 sería de aplicación a los depósitos
+                                bancarios a la vista o a plazo en euros, mientras que las cuentas denominadas en moneda
+                                distinta del euro entrarían en la clase 6. De ella interesa destacar que:</p>
+                            <ul>
+                            <li>Obliga a las entidades de crédito comercializadoras de depósitos a incluir, tanto
+                                en sus comunicaciones publicitarias como en la información previa que ha de
+                                facilitar al cliente según el artículo 6 de la Orden EHA 2899/2011, un indicador del
+                                riesgo y, en su caso, unas alertas por liquidez y complejidad.</li>
+                            <li>Resulta de aplicación a depósitos a la vista, de ahorro y a plazo, si bien se
+                                excluyen de su ámbito los depósitos estructurados1
+                                . En el expediente R201813020, la reclamación tenía como objeto una imposición a plazo en libras
+                                esterlinas. El DCMR, una vez resaltado el hecho de que los depósitos bancarios en
+                                moneda distinta del euro están clasificados en la clase 6 o de máximo riesgo de
+                                acuerdo con la citada «Orden de los semáforos», estimó que se había producido
+                                un quebrantamiento de las buenas prácticas bancarias, puesto que la entidad no
+                                acreditó que hubiese facilitado a su cliente información sobre todas las
+                                condiciones del depósito en libras.</li>
+
+                            </ul>
+                            <p>A mayor abundamiento, y sin perjuicio de su no aplicabilidad durante 2018, resulta de
+                                interés señalar, como cierre de este epígrafe, que, en el trámite de apertura de cuentas de
+                                pago, el Real Decreto-ley 19/2017, desarrollado mediante Circular del Banco de España
+                                2/2019, introduce la obligación de entrega de un documento informativo sobre
+                                comisiones estandarizado. Sobre el contenido y el formato específicos de este
+                                documento, puede consultarse el recuadro 2.2, sobre el Real Decreto-ley 19/2017, de 24
+                                de noviembre, de cuentas de pago básicas, traslado de cuentas de pago y
+                                comparabilidad de comisiones, y su normativa de desarrollo. </p>
+                            <h4>Explicaciones adecuadas</h4>
+                            <p>Las explicaciones adecuadas y la información precontractual son dos cosas distintas, si
+                                bien se complementan mutuamente. Ni el artículo 9 de la Orden EHA/2899/2011, ya
+                                citada, ni la norma quinta de la también citada Circular del Banco de España 5/2012, que
+                                la desarrolla, exigen la forma escrita para las explicaciones adecuadas, si bien tampoco la
+                                excluyen. Así, las explicaciones adecuadas, según están concebidas en la orden y en la
+                                circular, se facilitarán normalmente de forma verbal durante el proceso de
+                                comercialización, aclarando y complementando la información precontractual, que, por su
+                                naturaleza, será en muchos casos de carácter más técnico.
+                                Según el artículo 9 de la Orden EHA/2899/2011, las explicaciones deberán incluir, entre
+                                otras aclaraciones, las consecuencias que la celebración de un contrato de servicios
+                                bancarios puede tener para el cliente. Además, en caso de que la relación contractual
+                                vaya a girar sobre operaciones que, como el depósito a la vista, se hallan incluidas en el
+                                anejo 1 de la Circular del Banco de España 5/2012, las explicaciones deberán hacer
+                                mención de la existencia del anejo 1, de su contenido —«Información trimestral sobre
+                                comisiones y tipos practicados u ofertados de manera más habitual en las operaciones
+                                más frecuentes con los perfiles de clientes más comunes que sean personas físicas»— y
+                                del lugar en que el cliente puede consultarlo2
+                                .
+                                En el supuesto de que la comercialización de un producto —en este caso, el depósito a la
+                                vista— se acompañe de una recomendación personalizada, especialmente en el caso de
+                                campañas de distribución masiva, las entidades deberán extremar la diligencia en las
+                                explicaciones que han de facilitar al cliente. A tal fin, recabarán de este la información
+                                adecuada sobre sus necesidades y su situación financiera, y ajustarán la información que
+                                le suministren a los datos así recabados.
+                                En general, este DCMR ha manifestado que es obligación de las entidades, desde el
+                                punto de vista de las buenas prácticas, explicar a sus clientes de manera veraz las
+                                características de las promociones que ofrecen y la forma de verificar los requisitos para
+                                su obtención, de modo que tengan un conocimiento claro y preciso de las prestaciones
+                                que pueden recibir, para evitar que alberguen falsas expectativas al respecto.
+                                Consideramos que las entidades deben estar en condiciones de acreditar que facilitaron a
+                                sus clientes información precontractual y explicaciones adecuadas (personalizadas, para
+                                su concreta situación particular), de modo que se justifique que estos, antes de contratar,
+                                estuvieron en condiciones de conocer con exactitud las condiciones o los requisitos que
+                                debían cumplir para la obtención de determinada promoción, vinculada a la apertura o
+                                mantenimiento de una cuenta y/o la domiciliación de ciertos ingresos y pagos.
+                                En la práctica bancaria reciente, numerosas entidades han desarrollado campañas o
+                                programas de captación o fidelización de clientes, consistentes en ofrecer a los titulares
+                                de cuentas a la vista determinadas ventajas (véanse exención de comisiones,
+                                bonificaciones, especial remuneración, etc.), siempre que cumplieran ciertos requisitos
+                                (los más frecuentes: domiciliación de nómina, pensión o ingresos recurrentes,
+                                domiciliación de recibos, cierto número de pagos con tarjeta, etc.), y, así, durante 2018 se
+                                nos han presentado numerosas reclamaciones en las que los clientes, de algún modo,
+                                cuestionaban la exactitud o corrección de las explicaciones facilitadas en la oficina
+                                bancaria: en unos casos, mostraban su sorpresa porque no se les habían aplicado las
+                                ventajas que esperaban obtener, a pesar de que, entendían, habían cumplido los
+                                requisitos acordados con los empleados de la entidad; en otros casos, manifestaban
+                                expresamente que en la oficina se les habían facilitado información o explicaciones poco
+                                claras, o engañosas, sobre los requisitos necesarios para disfrutar de especiales
+                                condiciones</p>
+                            <h3>Información precontractual</h3>
+                            <p>Tanto la normativa de servicios de pago como la normativa general de transparencia
+                                regulan la exigencia de que sea entregada al cliente de forma gratuita la oportuna
+                                información precontractual, con carácter previo al momento en que quede vinculado por
+                                el contrato u oferta, de manera que pueda comparar ofertas similares y adoptar una
+                                decisión informada sobre cualquier producto bancario. La información precontractual
+                                deberá ser clara, oportuna y suficiente, objetiva y no engañosa; para los depósitos o
+                                cuentas a la vista, la obligación de información previa podrá ser cumplida proporcionando
+                                al cliente una copia del borrador del contrato.
+                                En la mayoría de los expedientes de reclamación presentados en el ejercicio 2018 en los
+                                que, en cierto modo —en alguno de los escritos incorporados al expediente que fueron
+                                remitidos a la entidad para que formulase alegaciones—, el reclamante puso de
+                                manifiesto la deficiencia en la información o en las explicaciones que la entidad le facilitó,
+                                con anterioridad a la contratación, en relación con las condiciones de la cuenta que se
+                                proponía contratar (o sobre los requisitos necesarios para la aplicación de tales
+                                condiciones) —bien porque acusó expresamente a la entidad de no informarle
+                                correctamente, bien porque puso de manifiesto su interpretación o su conocimiento
+                                discrepantes respecto a los de la entidad sobre la aplicación a su cuenta de las
+                                condiciones o ventajas, o sobre el cumplimiento de los requisitos—, este DCMR
+                                consideró imprescindible que la entidad financiera hubiera aportado al expediente de
+                                reclamación una copia de la información precontractual que facilitó al cliente en su día,
+                                fechada y con la firma del cliente en señal de su recepción</p>
+                            <h3>Formalización del contrato</h3>
+                            <p>La entrega y el contenido mínimo obligatorio de los contratos de depósitos a la vista se
+                                recogen en el artículo 12 de la Orden EHA/1608/2010, a la cual nos remitimos, que resulta
+                                aplicable cuando el cliente sea un consumidor o cuando, no siéndolo, no se haya pactado
+                                otro régimen. Las entidades deberán entregar al cliente un ejemplar del documento
+                                contractual con suficiente antelación a la fecha en que quede vinculado por el contrato
+                                marco u oferta o, si esto no es posible porque el contrato se haya celebrado a instancias
+                                del usuario a través de un medio de comunicación a distancia, inmediatamente después
+                                de su celebración. El titular del contrato tendrá derecho a recibir en papel o en otro
+                                soporte duradero las condiciones contractuales en cualquier momento de la relación
+                                contractual.</p>
+                            <h3>Cuentas en divisas</h3>
+                            <p>TEste DCMR estima que, en este tipo de cuentas, las entidades deben velar por que el
+                                contenido de los contratos formalizados se adapte a lo establecido en la normativa de
+                                servicios de pago en relación con su utilización y, sobre todo, recoja expresamente las
+                                condiciones particulares de estas cuentas en cuanto a la forma de disposición de la
+                                divisa, su conversión y los costes que ello podría suponer, según la modalidad de
+                                reembolso elegida (transferencia, obtención de billetes de esa moneda o conversión a
+                                otras divisas). Véase más adelante, a este respecto, la comisión de manipulación.
+                                En el expediente se pudo comprobar que la documentación que recogía las condiciones
+                                de un contrato de cuenta en divisas no incluía ninguna previsión con respecto a la forma
+                                de disposición de la divisa, su conversión y los costes que ello pudiera suponer, según la
+                                modalidad de reembolso elegida (transferencia, obtención de billetes o conversión a otras
+                                divisas), por lo que el DCMR concluyó que podría haberse producido un quebrantamiento
+                                de la normativa de transparencia</p>
+                            <h3>Integridad de los contratos</h3>
+                            <p>Las entidades deben asegurarse de la integridad de los contratos que suscriben con sus
+                                clientes, de modo que contemplen y regulen todas las posibles vicisitudes que puedan
+                                suceder a lo largo de cada relación. De no ser así, las buenas prácticas exigen que, en el
+                                momento de constatarse la ausencia de un pacto contractual preciso, las entidades traten
+                                de llegar a un acuerdo con sus clientes para que estos presten su consentimiento a
+                                alguna de las posibles formas de actuación en esos casos.
+                            </p>
+                            <h3>Oscuridad de las cláusulas</h3>
+                            <p>El principio de transparencia que inspira las buenas prácticas bancarias exige que los
+                                documentos contractuales huyan de cualquier tipo de estipulación susceptible de admitir
+                                interpretaciones opuestas, de modo que sus textos sean fácilmente comprensibles y
+                                directamente aplicables.
+                                A la vista de lo anterior (y al margen de que la interpretación definitiva de una cláusula, así
+                                como la determinación de las consecuencias que de aquella pudieran derivarse,
+                                correspondería realizarla, en exclusividad, a los jueces o tribunales de justicia), el DCMR
+                                considera —en línea con lo previsto en el artículo 1288 del Código Civil— que, en caso de
+                                cláusulas oscuras susceptibles de diversas interpretaciones, debe considerarse contraria
+                                a las buenas prácticas bancarias la actuación de las entidades consistente en efectuar
+                                interpretaciones de los contratos que les resulten más favorables, sin haber tratado de
+                                llegar a un acuerdo previo con sus clientes titulares de cuenta sobre el alcance de lo
+                                pactado.</p>
+                            <h3>Entrega de documento contractual y conservación de documentos</h3>
+                            <p>Como hemos dicho, en cualquier momento de la relación contractual el cliente tiene
+                                derecho a solicitar y a recibir una copia del documento contractual en el que se formaliza
+                                el depósito a la vista, en papel o en soporte duradero. De acuerdo con ello, las entidades
+                                están obligadas a conservar copia del contrato firmada por aquel (así como el recibí, que
+                                podrá constar en el propio documento), debiendo estar en condiciones de ponerla a
+                                disposición del cliente siempre que este lo solicite, bien en papel, bien en soporte
+                                duradero si la contratación se efectuó por medios electrónicos. Cuando los contratos
+                                sean intervenidos por fedatario público, la entidad podrá enviar por correo el contrato
+                                intervenido; en estos casos, el recibí del cliente lo constituirá el correspondiente acuse de
+                                recibo del envío.
+                                Este DCMR entiende, haciendo suya la doctrina del Tribunal Supremo en este asunto, que
+                                las entidades han de conservar toda aquella documentación relativa al nacimiento,
+                                modificación y extinción de los derechos y de las obligaciones que les incumben, no solo
+                                durante el plazo de seis años, sino al menos durante el período en que, a tenor de las
+                                normas sobre prescripción, pueda resultarles conveniente promover el ejercicio de los
+                                primeros, o sea posible que les llegue a ser exigido el cumplimiento de las segundas3
+                                .
+                                Este criterio ha adquirido rango legal en virtud del Real Decreto-ley 19/2018, en relación
+                                con los documentos y registros que permitan acreditar el cumplimiento de las
+                                obligaciones de las entidades relativas a la prestación y utilización de servicios de pago.
+                                Cuando los reclamantes denuncian no haber sido informados de las condiciones que se
+                                aplican en sus contratos (tipo de interés, comisiones, posibilidad de descubierto...), son
+                                las entidades las que deben acreditar que sus clientes las conocían y las aceptaron. En
+                                los casos en los que no se ha acreditado adecuadamente ante este DCMR la debida
+                                formalización de los contratos, se ha apreciado posible quebrantamiento de la normativa y
+                                de las buenas prácticas bancarias, por entender que estos pudieron no haberse
+                                formalizado, o pudo existir falta de la debida diligencia en la custodia de los documentos
+                                justificativos de las relaciones jurídicas mantenidas con sus clientes, o, en su caso, falta
+                                de colaboración con el propio DCMR en la resolución de la reclamación.
+                                Además, entendemos que el contrato y las condiciones deben facilitarse a los clientes tan
+                                pronto como lo soliciten, pues no se considera una buena práctica bancaria demorar la
+                                respuesta hasta que se plantee reclamación ante este DCMR, ya que en tales casos la
+                                actuación de la entidad evidencia un desinterés que contradice los principios de lealtad
+                                hacia su cliente, así como de claridad y transparencia, que deben regir las relaciones
+                                entre las partes.
+                                Durante 2018, el DCMR ha tramitado expedientes de reclamación cuyo objeto fue que la
+                                oficina bancaria no había atendido la solicitud de su cliente de entrega de copia de su
+                                contrato de cuenta. En muchos casos, las entidades han alegado la antigüedad de los
+                                contratos o su extravío a consecuencia del cierre de sucursales o, en general, como
+                                resultado de procesos de fusión de entidades. Este DCMR ha insistido en la importancia
+                                de custodiar adecuadamente los documentos que recojan las condiciones contractuales
+                                según prevé la normativa de aplicación. Hay que recordar, además, que las entidades
+                                deben estar en condiciones de facilitar a sus clientes, en el momento en que lo soliciten,
+                                copia de los contratos formalizados, según se prevé en la norma novena de la Circular del
+                                Banco de España 5/2012. Por este motivo, el DCMR concluyó apreciando posible
+                                quebrantamiento de la normativa cuando la entidad reconocía que no había podido
+                                localizar el contrato suscrito con el cliente.</p>
                         </div>
                     </div>
                 </div>
@@ -283,12 +495,12 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <!-- Pie de pagina -->
-<footer class="footer text-center bg-danger">
+<footer class="colorCorporativo footer text-center">
     <div class="container">
         <div class="row py-4">
             <!-- Localizacion del pie de pagina-->
             <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Location</h4>
+                <h4 class="text-uppercase mb-4">Localización</h4>
                 <p class="lead mb-0">
                     2215 John Daniel Drive
                     <br />
@@ -297,7 +509,7 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <!-- Iconos de la redes sociales del pie de pagina-->
             <div class="col-lg-4 mb-5 mb-lg-0">
-                <h4 class="text-uppercase mb-4">Around the Web</h4>
+                <h4 class="text-uppercase mb-4">Sitios Web</h4>
                 <a class="btn btn-outline-light btn-social rounded-circle mx-1" href="#!"><i class="fab fa-fw fa-facebook-f"></i></a>
                 <a class="btn btn-outline-light btn-social rounded-circle mx-1" href="#!"><i class="fab fa-fw fa-twitter"></i></a>
                 <a class="btn btn-outline-light btn-social rounded-circle mx-1" href="#!"><i class="fab fa-fw fa-linkedin-in"></i></a>
@@ -305,17 +517,17 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
             </div>
             <!-- Texto del pie de pagina -->
             <div class="col-lg-4">
-                <h4 class="text-uppercase mb-4">About Freelancer</h4>
+                <h4 class="text-uppercase mb-4">Sobre nosotros</h4>
                 <p class="lead mb-0">
-                    Freelance is a free to use, MIT licensed Bootstrap theme created by
-                    <a href="http://startbootstrap.com">Start Bootstrap</a>
+                    Nueva banca agil moderna podras hacer casi todo por internet.
+                    <a href="http://startbootstrap.com"><p>Banca PANDA</p></a>
                 </p>
             </div>
         </div>
     </div>
 </footer>
 <!-- Sección de Copyright -->
-<div class="copyright py-4 text-center bg-warning">
+<div class="copyright py-4 text-center colorCorporativo">
     <div class="container"><small>Copyright &copy; Your Website 2021</small></div>
 </div>
 

@@ -93,16 +93,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     $mysqli->close();
 }
 ?>
- 
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Jekyll v4.1.1">
-    <title>Signin Template · Bootstrap</title>
+    <title>Login</title>
 
     <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/sign-in/">
 
@@ -126,7 +123,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     </style>
     <!-- Custom styles for this template -->
-    <link href="css/signin.css" rel="stylesheet">
+    <link href="assets/css/signin.css" rel="stylesheet">
+    <link href="assets/css/style.css" rel="stylesheet">
 </head>
 <body class="text-center">
 <!--<div class="wrapper">-->
@@ -139,10 +137,11 @@ if(!empty($login_err)){
 
 <form class="form-signin" action="<?php echo htmlspecialchars($_SERVER["SCRIPT_NAME"]); ?>" method="post">
     <!--<div class="form-group">-->
-    <h2>Login</h2>
+    <img class="mb-4" src="assets/img/confundido.png" alt="" width="72" height="72">
+    <h2>Acceso</h2>
     <p>Por favor introduce tus credenciales para acceder.</p>
     <label for="inD" class="sr-only">DNI</label>
-    <input type="text" id="inD" name="dni" class="form-control <?php echo (!empty($dni_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dni; ?>">
+    <input type="text" id="inD" name="dni"  autofocus class="form-control <?php echo (!empty($dni_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dni; ?>">
     <span class="invalid-feedback"><?php echo $dni_err; ?></span>
     <!-- </div>
      <div class="form-group"> -->
@@ -151,9 +150,9 @@ if(!empty($login_err)){
     <span class="invalid-feedback"><?php echo $contrasena_err; ?></span>
     <!-- </div>
      <div class="form-group"> -->
-    <input type="submit" class="btn btn-lg btn-primary btn-block" value="Acceder">
+    <input type="submit" class="btn btn-lg btn-block col" value="Acceder">
     <!-- </div>-->
-    <p>¿No tienes una cuenta? <a href="registro.php">¡Regístrate!</a>.</p>
+    <p class="my-1">¿No tienes una cuenta? <a href="registro.php">¡Regístrate!</a>.</p>
 </form>
 <!-- </div>-->
 </body>

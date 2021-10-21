@@ -1,0 +1,14 @@
+/* latin */
+@font-face {
+    font-family: 'Dancing Script';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url(../font/DancingScript.ttf) format('truetype');
+}
+
+.fontPanda {
+    font-family: 'Dancing Script';
+    text-shadow: 20px 2px 5px;
+    font-size: 40px;
+}

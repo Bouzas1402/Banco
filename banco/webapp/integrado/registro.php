@@ -153,62 +153,101 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
     <meta charset="UTF-8">
     <title>Registro</title>
     <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link href="assets/css/style.css" rel="stylesheet">
     <style>
         body{ font: 14px sans-serif; }
-        .wrapper{ width: 360px; padding: 20px; }
+        .wrapper{
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 10%;
+            border: #1a1e21;
+            border-style: solid;
+            border-width: 1px;
+            box-shadow: 30px 20px 10px #999;
+            padding: 50px;
+        }
+
+        backgroun-image {
+
+        }
     </style>
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('.search-box input[type="text"]').on("keyup input", function(){
+                /* Get input value on change */
+                var inputVal = $(this).val();
+                var resultDropdown = $(this).siblings(".result");
+                if(inputVal.length){
+                    $.get("backend-search.php", {term: inputVal}).done(function(data){
+                        // Display the returned data in browser
+                        resultDropdown.html(data);
+                    });
+                } else{
+                    resultDropdown.empty();
+                }
+            });
+
+            // Set search input value on click of result item
+            $(document).on("click", ".result p", function(){
+                $(this).parents(".search-box").find('input[type="text"]').val($(this).text());
+                $(this).parent(".result").empty();
+            });
+        });
+    </script>
 </head>
-<body>
-<div class="wrapper">
+<body style="background-color: #f5f5f5; background-image: url('assets/img/confundido.png'); background-repeat: no-repeat; background-position: center;">
+<div class="wrapper col-8">
     <h2>Registro</h2>
-    <p>Por favor rellena el formulario para crear una cuenta.</p>
+    <br>
+    <p>Por favor rellen<span style="color: #f0f0f0">a el formulario</span> para crear una cuenta.</p>
     <form action="<?php echo htmlspecialchars($_SERVER["SCRIPT_NAME"]); ?>" method="post">
         <div class="form-group">
             <label>Nombre</label>
-            <input type="text" name="nombre" class="form-control <?php echo (!empty($nombre_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nombre; ?>">
+            <input type="text" name="nombre" class="form-control my-1 <?php echo (!empty($nombre_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nombre; ?>">
             <span class="invalid-feedback"><?php echo $nombre_err; ?></span>
         </div>
         <div class="form-group">
-            <label>Primer Apellido</label>
-            <input type="text" name="apellido1" class="form-control <?php echo (!empty($apellido1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $apellido1; ?>">
+            <label>Primer Ap<span style="color: #f0f0f0">ellido</span></label>
+            <input type="text" name="apellido1" class="form-control my-1 <?php echo (!empty($apellido1_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $apellido1; ?>">
             <span class="invalid-feedback"><?php echo $apellido1_err; ?></span>
         </div>
         <div class="form-group">
             <label>Segundo Apellido</label>
-            <input type="text" name="apellido2" class="form-control <?php echo (!empty($apellido2_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $apellido2; ?>">
+            <input type="text" name="apellido2" class="form-control my-1 <?php echo (!empty($apellido2_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $apellido2; ?>">
             <span class="invalid-feedback"><?php echo $apellido2_err; ?></span>
         </div>
         <div class="form-group">
             <label>DNI</label>
-            <input type="text" name="dni" class="form-control <?php echo (!empty($dni_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dni; ?>">
+            <input type="text" name="dni" class="form-control my-1 <?php echo (!empty($dni_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dni; ?>">
             <span class="invalid-feedback"><?php echo $dni_err; ?></span>
         </div>
         <div class="form-group">
             <label>Nacionalidad</label>
-            <input type="text" name="nacionalidad" class="form-control <?php echo (!empty($nacionalidad_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nacionalidad; ?>">
+            <input type="text" name="nacionalidad" class="form-control my-1 <?php echo (!empty($nacionalidad_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nacionalidad; ?>">
             <span class="invalid-feedback"><?php echo $nacionalidad_err; ?></span>
         </div>
         <div class="form-group">
             <label>Teléfono</label>
-            <input type="text" name="telefono" class="form-control <?php echo (!empty($telefono_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $telefono; ?>">
+            <input type="text" name="telefono" class="form-control my-1 <?php echo (!empty($telefono_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $telefono; ?>">
             <span class="invalid-feedback"><?php echo $telefono_err; ?></span>
         </div>
         <div class="form-group">
             <label>Contraseña</label>
-            <input type="password" name="contrasena" class="form-control <?php echo (!empty($contrasena_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $contrasena; ?>">
+            <input type="password" name="contrasena" class="form-control my-1 <?php echo (!empty($contrasena_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $contrasena; ?>">
             <span class="invalid-feedback"><?php echo $contrasena_err; ?></span>
         </div>
         <div class="form-group">
             <label>Confirma la contraseña</label>
-            <input type="password" name="confirm_contrasena" class="form-control <?php echo (!empty($confirm_contrasena_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_contrasena; ?>">
+            <input type="password" name="confirm_contrasena" class="form-control my-1 <?php echo (!empty($confirm_contrasena_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $confirm_contrasena; ?>">
             <span class="invalid-feedback"><?php echo $confirm_contrasena_err; ?></span>
         </div>
 
         <div class="form-group">
-            <input type="submit" class="btn btn-primary" value="Registrarse">
-            <input type="reset" class="btn btn-secondary ml-2" value="Borrar">
+            <input type="submit" class="btn col my-1" value="Registrarse">
+            <input type="reset" class="btn btn-secondary ml-2 my-1" id="delB" value="Borrar">
         </div>
-        <p>¿Ya tienes una cuenta? <a href="login.php">Accede</a>.</p>
+        <p class="my-1">¿Ya tienes una cuenta? <a href="login.php">Accede</a>.</p>
     </form>
 </div>
 </body>
