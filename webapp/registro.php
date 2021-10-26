@@ -145,7 +145,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         } while ($ibanCorrecto);
 
 
-        $sql = "INSERT INTO cuenta (iban, saldo, dni) VALUES (?, 3500, ?)";
+        $sql = "INSERT INTO cuenta (iban, saldo, dni) VALUES (?, 0, ?)";
         if ($stmt = $mysqli->prepare($sql)){
             $stmt->bind_param("ss", $nuevo_iban,$dni);
             // Redirect to login page

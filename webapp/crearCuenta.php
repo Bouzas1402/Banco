@@ -50,7 +50,7 @@ function crearCuenta ($dni, $contrasena_crear_cuenta){
                                             }
                                         }
                                     } while ($ibanCorrecto);
-                                    $sql = "INSERT INTO cuenta (iban, saldo, dni) VALUES (?, 3500, ?)";
+                                    $sql = "INSERT INTO cuenta (iban, saldo, dni) VALUES (?, 0, ?)";
                                     if ($stmt = $mysqli->prepare($sql)) {
                                         $stmt->bind_param("ss", $nuevo_iban, $dni);
                                         // Redirect to login page
