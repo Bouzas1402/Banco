@@ -45,21 +45,22 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         }
     }
 
-    if(empty(trim($_POST["nombre"]))){
-        $nombre_err = "Por favor, introduce un nombre.";
-    }else{
+    if(!preg_match('/^[a-zA-Z]{3,}/', trim($_POST["nombre"]))){
+        $nombre_err = "Introduzca un nombre válido.";
+    }
+    else{
         $nombre = trim($_POST["nombre"]);
     }
 
-    if(empty(trim($_POST["apellido1"]))){
-        $apellido1_err = "Por favor, introduce tu primer apellido.";
-    }else{
+    if(!preg_match('/^[a-zA-Z]{3,}/', trim($_POST["apellido1"]))){
+        $apellido1_err = "Introduzca un apellido válido.";
+    } else{
         $apellido1 = trim($_POST["apellido1"]);
     }
 
-    if(empty(trim($_POST["apellido2"]))){
-        $apellido2_err = "Por favor, introduce tu segundo apellido.";
-    }else{
+    if(!preg_match('/^[a-zA-Z]{3,}/', trim($_POST["apellido2"]))){
+        $apellido2_err = "Introduzca un apellido válido.";
+    } else{
         $apellido2 = trim($_POST["apellido2"]);
     }
 
