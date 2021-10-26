@@ -197,7 +197,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
                 var inputVal = $(this).val();
                 var resultDropdown = $(this).siblings(".result");
                 if(inputVal.length){
-                    $.get("backend-search.php", {term: inputVal}).done(function(data){
+                    $.get("buscar-nacionalidad.php", {term: inputVal}).done(function(data){
                         // Display the returned data in browser
                         resultDropdown.html(data);
                     });
@@ -240,10 +240,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <input type="text" name="dni" class="form-control my-1 <?php echo (!empty($dni_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $dni; ?>">
             <span class="invalid-feedback"><?php echo $dni_err; ?></span>
         </div>
-        <div class="form-group">
-            <label>Nacionalidad</label>
-            <input type="text" name="nacionalidad" class="form-control my-1 <?php echo (!empty($nacionalidad_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nacionalidad; ?>">
-            <span class="invalid-feedback"><?php echo $nacionalidad_err; ?></span>
+        <div class="search-box">
+            <div class="form-group">
+                <label>Nacionalidad</label>
+                <input type="text" name="nacionalidad" class="form-control my-1 <?php echo (!empty($nacionalidad_err)) ? 'is-invalid' : ''; ?>" value="<?php echo $nacionalidad; ?>">
+                <span class="invalid-feedback"><?php echo $nacionalidad_err; ?></span>
+                <div class="result"></div>
+            </div>
         </div>
         <div class="form-group">
             <label>Teléfono</label>

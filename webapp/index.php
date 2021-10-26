@@ -19,8 +19,7 @@ if(isset($_COOKIE['contador'])){
     // Caduca en un año
     setcookie('contador', $_COOKIE['contador'] + 1, time() + 365 * 24 * 60 * 60);
     $mensaje = 'Número de visitas: ' . $_COOKIE['contador'];
-}
-else {
+} else {
     // Caduca en un año
     setcookie('contador', 1, time() + 365 * 24 * 60 * 60);
     $mensaje = 'Bienvenido a nuestra página web';
@@ -208,7 +207,7 @@ if (isset($_POST["cerrarSesion"]) && $_SERVER["REQUEST_METHOD"] == "POST") {
                                 <span class="valid-feedback"><?php echo $tranferencia_hecha; ?></span>
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary" value="Login">
+                                <input type="submit" class="btn btn-primary" value="Aceptar">
                             </div>
                         </form>
                     </div>
